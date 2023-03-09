@@ -1,4 +1,3 @@
-# timp_lab3
 ## Laboratory work III
 
 Данная лабораторная работа посвещена изучению систем автоматизации сборки проекта на примере **CMake**
@@ -43,6 +42,7 @@ bar
 bar bar
 foo foo
 
+
 `cmake_minimum_require` задает минимальную версию Cmake
 
 Затем задаем стандарт C++
@@ -63,9 +63,48 @@ foo foo
 2)
 ![изображение](https://github.com/lepeha81/timp_lab3/blob/main/3.PNG)
 
-`target_include_directories()` подключаем а таргету(проекту) заданную директорию с установленной видимостью
+Прописывается основная информация для сборки через CMake.
+cmake_minimum_required(VERSION 3.4)    # Минимальная версия CMake
+
+set(CMAKE_CXX_STANDARD 17)             # Стандарт C++
+
+set(CMAKE_CXX_STANDARD_REQUIRED ON)    # Обязательность установки указанного стандарта (если OFF (по умолчанию), то воспринимается как совет)
+
+Название проекта
+project()
+
+Библиотека
+add_library(
+
+  my_very_interesting_target_library              # Название цели
+  
+  STATIC                                          # Тип библиотеки (SHARED или STATIC)
+  
+  ${CMAKE_CURRENT_SOURCE_DIR}/path_to_cpp_file
+  
+  ${CMAKE_CURRENT_SOURCE_DIR}/path_to_another_cpp_file
+)
+
+Указание директорий с заголовочными файлами
+target_include_directories(
+
+  target_name                           # Цель, при сборке которой учитываются указанные пути к заголовочным файлам
+  
+  PUBLIC                                # область видимости (PRIVATE, INTERFACE или PUBLIC)
+  
+  ${CMAKE_CURRENT_SOURCE_DIR}/include
+)
+Указание библиотек для линковки
+
+target_link_libraries(
+
+  target_name                         # Цель, к которой просходит линковка
+  
+  library_name                        # Библиотеки, которые линкуются к цели
+  
+)
+
 `add_subdirectory` подключаем в сборку проект formatter из заданной директории
-`target_link_libraries()` линкуем все проекты с установленной видимостью
 
 
 ### Задание 3
@@ -80,4 +119,5 @@ foo foo
 ![image](https://github.com/lepeha81/timp_lab3/blob/main/6.PNG)
 ![image](https://github.com/lepeha81/timp_lab3/blob/main/7.PNG)
 * *solver*, приложение которое испольует статические библиотеки *formatter_ex* и *solver_lib*.
-`add_executable()` добавляем в проект исполняемый файл(-ы) 
+* 
+add_executable(main ${SOURCE_EXE})	# Создает исполняемый файл с именем main
