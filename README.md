@@ -186,11 +186,20 @@ target_link_libraries(
 вам необходимо создать два `CMakeList.txt` для двух простых приложений:
 * *hello_world*, которое использует библиотеку *formatter_ex*;
 
-![изображение](https://github.com/lepeha81/timp_lab3/blob/main/4.PNG)
-![image](https://github.com/lepeha81/timp_lab3/blob/main/9.PNG)
-![image](https://github.com/lepeha81/timp_lab3/blob/main/5.PNG)
-![image](https://github.com/lepeha81/timp_lab3/blob/main/6.PNG)
-![image](https://github.com/lepeha81/timp_lab3/blob/main/7.PNG)
+![изображение](https://github.com/lepeha81/timp_lab3/blob/main/21.PNG)
+ В папке `build` появится исполняемый файл `hello_world`. Запустим его:
+![image](https://github.com/lepeha81/timp_lab3/blob/main/15.PNG)
+> Есть лишь одна проблема. В коде библиотеки есть **ошибка**: не хватает библиотеки `cmath`, а `sqrtf` не лежит в `std`. Исправим это. В файле
+![image](https://github.com/lepeha81/timp_lab3/blob/main/16.PNG)
+![image](https://github.com/lepeha81/timp_lab3/blob/main/17.PNG)
+> Далее соберём библиотеку.
+> 
+> Директория `solver_lib`, файл `CMakeLists.txt`:
+![image](https://github.com/lepeha81/timp_lab3/blob/main/18.PNG)
+> Директория `solver_application`, файл `CMakeLists.txt`:
+> ![image](https://github.com/lepeha81/timp_lab3/blob/main/19.PNG)
+ > Разница лишь в том, что к таргету `solver` подключаются две библиотеки.
+>  ![image](https://github.com/lepeha81/timp_lab3/blob/main/20.PNG)
 * *solver*, приложение которое испольует статические библиотеки *formatter_ex* и *solver_lib*.
 * 
 add_executable(main ${SOURCE_EXE})	# Создает исполняемый файл с именем main
